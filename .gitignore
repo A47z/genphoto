@@ -1,0 +1,24 @@
+# Maven build
+**/target/
+
+# Maven local repo cache
+org/
+
+# Frontend
+genphoto-frontend/node_modules/
+genphoto-frontend/dist/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+
+# Env & logs
+.env
+*.log
