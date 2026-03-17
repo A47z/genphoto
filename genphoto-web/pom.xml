@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.genphoto</groupId>
+        <artifactId>genphoto</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>genphoto-web</artifactId>
+    <name>GenPhoto Web</name>
+    <description>组装启动模块：汇集所有子模块，提供Spring Boot启动入口</description>
+
+    <dependencies>
+        <!-- 引入所有业务模块 -->
+        <dependency>
+            <groupId>com.genphoto</groupId>
+            <artifactId>genphoto-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.genphoto</groupId>
+            <artifactId>genphoto-user</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.genphoto</groupId>
+            <artifactId>genphoto-generation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.genphoto</groupId>
+            <artifactId>genphoto-image</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.genphoto</groupId>
+            <artifactId>genphoto-prompt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.genphoto</groupId>
+            <artifactId>genphoto-favorite</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.genphoto</groupId>
+            <artifactId>genphoto-social</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.genphoto</groupId>
+            <artifactId>genphoto-ai</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.genphoto</groupId>
+            <artifactId>genphoto-stats</artifactId>
+        </dependency>
+
+        <!-- 数据库驱动 -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- API文档 -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+
+        <!-- 测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

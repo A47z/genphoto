@@ -1,0 +1,56 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/genphoto?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&createDatabaseIfNotExist=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:changeme}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  ai:
+    openai:
+      api-key: ${AI_IMAGE_API_KEY:your-api-key-here}
+      base-url: ${AI_IMAGE_BASE_URL:https://api.openai.com}
+      chat:
+        options:
+          model: gemini-2.5-flash-image
+
+# JWT配置
+jwt:
+  secret: ${JWT_SECRET:please-set-a-strong-secret-at-least-32-bytes}
+  expiration: 86400000  # 24小时
+
+# MinIO对象存储配置
+genphoto:
+  minio:
+    endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
+    access-key: ${MINIO_ACCESS_KEY:minioadmin}
+    secret-key: ${MINIO_SECRET_KEY:minioadmin}
+    bucket: genphoto-images
+  ai:
+    text-llm:
+      base-url: ${AI_TEXT_BASE_URL:http://localhost:8317/v1}
+      api-key: ${AI_TEXT_API_KEY:your-api-key-here}
+      model: gpt-5.4
+
+# Swagger配置
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
