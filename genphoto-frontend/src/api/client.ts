@@ -1,0 +1,31 @@
+import axios from 'axios';
+
+export const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:8080';
+
+const client = axios.create({
+  baseURL: API_BASE,
+  timeout: 60000,
+});
+
+// 请求拦截器：自动带上JWT token
+client.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// 响应拦截器：处理401未授权
+client.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default client;
