@@ -1,0 +1,14 @@
+[Unit]
+Description=GenPhoto Backend
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/genphoto
+ExecStart=/usr/bin/java -jar /opt/genphoto/genphoto-web.jar
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
